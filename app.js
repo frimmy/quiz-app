@@ -1,43 +1,65 @@
 $(function(){
 	// var questions = [];
-	var questions = [quest_0, quest_1, quest_2, quest_3, quest_4];
+	
 	var score = 0;
 	var current_question = 1;
-	
-	var quest_0 = {
-		quote: "This morning I saw a youtube video with a puppy riding a motorcycle. So my bar for stunning is pretty high.", 
+	// cache callable ids
+	var $questionSpace = ('div#questionSpace');
+	var $quoteSpace = $('div#quoteSpace');
+	var $choiceSpace = $('ul#choiceSpace');
+
+	var $quest_0 = {
+		quote: "\'This morning I saw a youtube video with a puppy riding a motorcycle. So my bar for stunning is pretty high.\'", 
 		choices: ["Leslie", "Tom", "Ann","Gary"], 
-		correct_choice: this.choices[1],		
+		correct_choice: 1,
 		correct:0 };
 
-	var quest_1 = {
-		quote: "Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.",
+	var $quest_1 = {
+		quote: "\'Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.\'",
 		choices: ["Andy", "April", "Leslie","Ron"],
-		correct_choice: this.choices[0],
+		correct_choice: 0,
 		correct:0};
 
-	var quest_2 = {
-		quote: "I'm a simple man. I like pretty, dark-haired women and breakfast food.",
+	var $quest_2 = {
+		quote: "\'I'm a simple man. I like pretty, dark-haired women and breakfast food.\'",
 		choices: ["Leslie", "Tom", "Ron","Chris"],
-		correct_choice: this.choices[2],
+		correct_choice: 2,
 		correct:0};
 
-	var quest_3 = {
-		quote: "The less I know about other people's affairs, the happier I am. I'm not interested in caring about people. I once worked with a guy for three years and never learned his name. Best friend I ever had. We still never talk sometimes.",
-		choices: ["Leslie", "Tom", "Ron","Chris"],
-		correct_choice: this.choices[2],
+	var $quest_3 = {
+		quote: "\'My mom's Puerto Rican. That's why I'm so lively and colorful.\'",
+		choices: ["Ann", "Tom", "Andy","April"],
+		correct_choice: 3,
 		correct:0};
 
 
-	var quest_4 = {
-		quote: "The less I know about other people's affairs, the happier I am. I'm not interested in caring about people. I once worked with a guy for three years and never learned his name. Best friend I ever had. We still never talk sometimes.",
-		choices: ["Leslie", "Tom", "Ron","Chris"],
+	var $quest_4 = {
+		quote: "\'My parents had it amended. I don't get anything until I'm 50, which is a waste because I'm going to be a billionaire in Costa Rica by then. Eatin' dolphin and hangin' out with lady singers.\'",
+		choices: ["Jean Ralphio", "Tom", "Ron","Chris"],
+		correct_choice: 0,
 		correct:0};
 
+	var $questions = [$quest_0, $quest_1, $quest_2, $quest_3, $quest_4];
 
 	// function for queuing questions to iterate through
-	var generateQuestion = function(question) {
-		$('div#questionSpace').append()
-	}
+	var createQuestion = function($question) {
+		// sets correct choice
+		// console.log($question);
+		this.correct_choice = $question.correct_choice;
 
+		// populate quote
+		$quoteSpace.text($question.quote);
+		
+		//populate choices
+		for (var i = $question.choices.length - 1; i >= 0; i--) {
+			$choiceSpace.append(
+				'<li>'+ $question.choices[i] + '</li>'
+			);
+		}
+
+		$($questionSpace).fadeIn('slow');
+
+	};
+
+	createQuestion($questions[0]);
 });

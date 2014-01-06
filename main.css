@@ -51,7 +51,7 @@ table {
 body {
 	padding-top: 50px;
 	text-align: center;
-	/*background-color: blue;*/
+	min-height: 800px;
 }
 
 .starter-template {
@@ -89,8 +89,13 @@ h1,h2 {
 	margin: auto;
 }
 
+.container#content {
+	margin: 20px auto;
+	min-height: 800px;
+}
+
 footer {
-	position:absolute;
+	position: relative;
 	width: 100%;
 	bottom: 10px;
 	text-align: center;
@@ -101,8 +106,25 @@ footer p,footer a {
 	color: #f7f7f7;
 }
 
-.twitter-follow-button {
-	position: absolute;
-	top: 10px;
-	left: 10px;
+#quiz {
+	display: block;
+	font: normal normal normal 1em/1.5 sans-serif;
+	color: black;
+	height: 200px;
+	width: 700px;
+	margin: 20px auto;
+	text-align: center;
 }
+
+#questionSpace {
+	margin: 20px;
+	display: none;
+}
+
+#choiceSpace {
+	margin: 10px;
+}
+
+#choiceSpace:hover,#choiceSpace:focus {
+	color: #0039FF;
+};
