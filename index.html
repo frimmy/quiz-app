@@ -58,22 +58,35 @@
                 
         <h1>Know Your Parks'n Rec?</h1>
         <!-- Quiz section where questions will be looped through -->        
-        <button>Previous Question</button>
-        <button>Next Question</button>
+        <h2>Click the 'start' button to begin the quiz.</h2>        
         <section id="quiz">
-        <!-- buttons will be replaced by arrows -->
-        Click the 'start' button to begin the quiz.
-          <div id="questionSpace">
+            <div id="questionSpace">
+                <img src="images/parks-and-rec.jpg" alt="parks and rec cast">
+               
             <div id="quoteSpace"></div>
-            <ul id="choiceSpace">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-            <input type="submit">
-          </div>          
-        </section>        
+                
+                <ul id="choiceSpace">
+                    
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                
+                </ul>
+            
+            </div>
+        
+        </section>
+        <!-- buttons will be replaced by arrows -->
+        <div id="quiz-buttons-holder">
+            <button class="btn btn-default" id="prevQuest"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+            <button class="btn btn-default" id="start">Start</button>
+            
+            <button class="btn btn-default" id="nextQuest"><span class="glyphicon glyphicon-chevron-right"></span></button>
+
+        </div>
+ 
         
     </div><!-- container -->
     

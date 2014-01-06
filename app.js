@@ -4,7 +4,7 @@ $(function(){
 	var score = 0;
 	var current_question = 1;
 	// cache callable ids
-	var $questionSpace = ('div#questionSpace');
+	var $questionSpace = $('#questionSpace');
 	var $quoteSpace = $('div#quoteSpace');
 	var $choiceSpaces = $('ul#choiceSpace').children();
 
@@ -20,6 +20,7 @@ $(function(){
 		correct_choice: 0,
 		correct:0};
 
+	
 	var $quest3 = {
 		quote: "\'I'm a simple man. I like pretty, dark-haired women and breakfast food.\'",
 		choices: ["Leslie", "Tom", "Ron","Chris"],
@@ -45,45 +46,58 @@ $(function(){
 			correct_questions: 0,
 			total_questions: function() {
 				return this.quest_array.length;
-			},
-			nextQuest : function () {
-				// takes array and moves to next question
-								
-				if (this.current_question < 5) {
-					createQuestion(this.quest_array[this.current_question-1]);
-				}
-				
-				this.current_question += 1;
 			}
 		};
 
-	// function for creating questions to iterate through
-	function createQuestion($question) {
-		// sets correct choice
-		console.log($question);
-		this.correct_choice = $question.correct_choice;
-
-		// populate quote
-		$quoteSpace.text($question.quote);
+	// functions
+	function nextQuest() {
+		var curr_quest = $questions.current_question;
 		
-		//populate choices
-		for (var i = $question.choices.length - 1; i >= 0; i--) {
-			$choiceSpaces.eq(i).text($question.choices[i]);
+		if(curr_quest <= 5) {
+			// $quoteSpace.fadeOut('fast');
+			// $choiceSpaces.fadeOut('fast');
+			$questionSpace.fadeOut(1000, function() {
+				$('img').remove();
+				createQuestion($questions.quest_array[curr_quest - 1]);
+			});
 		}
 
-		$($questionSpace).fadeIn('slow');
 
+
+		$questions.current_question +=1;
 	}
+
+	// function for creating questions to iterate through
+	function createQuestion(question) {
+		// sets correct choice
+		
+			console.log(question);
+			this.correct_choice = question.correct_choice;
+
+			// populate quote
+			$quoteSpace.text(question.quote);
+			
+			//populate choices
+			for (var i = question.choices.length - 1; i >= 0; i--) {
+				$choiceSpaces.eq(i).text(question.choices[i]);
+			}
+
+			$questionSpace.fadeIn();	
+		}
+		
+	
+
+	$('button').on('click', function(event) {
+
+		event.preventDefault();
+		/* Act on the event */
+		$('#start').fadeOut('slow');
+		nextQuest();
+		
+	});
+	console.log("running test");	
+
 
 	
-	var testCreateQuest = setInterval(function() {
-			$questions.nextQuest();
-			$($questionSpace).fadeOut('slow');
-		},2000);
-
-	for (var i = 0; i < $questions.quest_array.length; i++) {
-		testCreateQuest();
-
-	}
 	
 });

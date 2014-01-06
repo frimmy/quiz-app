@@ -103,18 +103,19 @@ footer {
 	text-align: center;
 }
 
+	
 footer p,footer a {
-	margin: 20px auto;
+	margin: 21px auto;
 	color: #f7f7f7;
 }
 
 /*Quiz Style*/
 
+
 #quiz {
-	display: block;
 	font: normal normal normal 1em/1.5 sans-serif;
 	color: black;
-	height: 200px;
+	height: 250px;
 	width: 700px;
 	margin: 20px auto;
 	text-align: center;
@@ -123,22 +124,24 @@ footer p,footer a {
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
 	margin: 20px;
-	display: none;
+	height: inherit;
+	width: inherit;
 	text-align: center;
 }
 
 #choiceSpace {
 	margin: 10px;
+	
 }
 
 /*choice styling*/
 ul#choiceSpace {
 	margin: 0px auto;	
 	width: 100px;
-
+	
 }
 ul#choiceSpace li:hover, ul#choiceSpace li {
-	
+	/*display: none;*/
 	margin: 3px;
     border-radius: 5px;
     text-decoration: none;
