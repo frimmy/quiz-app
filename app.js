@@ -42,36 +42,55 @@ $(function(){
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
-			current_question: 1,
+			current_question: 0,
 			correct_questions: 0,
 			total_questions: function() {
 				return this.quest_array.length;
 			}
 		};
 
-	// functions
+	/*functions*/
+	
 	function nextQuest() {
 		var curr_quest = $questions.current_question;
-		$('img').fadeOut();
-		if(curr_quest <= 5) {
+		
+		if(curr_quest < 5) {
+			curr_quest += 1;
 			// $quoteSpace.fadeOut('fast');
 			// $choiceSpaces.fadeOut('fast');
 			$questionSpace.fadeOut(1000, function() {
 					
 				createQuestion($questions.quest_array[curr_quest - 1]);
 			});
+
+			$questions.current_question +=1;
 		}
 
+		
+	}
 
+	function prevQuest() {
+		var curr_quest = $questions.current_question;
+		
+		if(curr_quest > 1) {
+			curr_quest -= 1;
+			
+			$questionSpace.fadeOut(1000, function() {
 
-		$questions.current_question +=1;
+				createQuestion($questions.quest_array[curr_quest - 1]);
+
+			});
+
+			$questions.current_question = curr_quest;
+		}
+
 	}
 
 	// function for creating questions to iterate through
 	function createQuestion(question) {
 		// sets correct choice
 		
-			console.log(question);
+			/*console.log(question);*/
 			this.correct_choice = question.correct_choice;
 
 			// populate quote
@@ -86,17 +105,33 @@ $(function(){
 		}
 		
 	
-
-	$('button').on('click', function(event) {
+	/*start quiz, fade out Cast pic*/
+	$('button#start').on('click', function(event) {
 
 		event.preventDefault();
-		/* Act on the event */
-		$('#start').fadeOut('slow');
-		nextQuest();
-		
-	});
-	console.log("running test");	
 
+		$('img, #start').fadeOut('slow');
+		$('#questionSpace, .nav-btns').fadeIn();
+		
+		nextQuest();
+		console.log($questions.current_question);	
+		});
+
+
+	/*nav buttons to queue questions*/
+	$('button#nextQuest, button#prevQuest').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		
+
+		if(this.id === "prevQuest"){
+			console.log(this.id);
+			prevQuest();
+		} else if (this.id === "nextQuest") {
+			console.log(this.id);
+			nextQuest();
+		}
+	});
 
 	
 	

@@ -109,8 +109,11 @@ footer p,footer a {
 
 #quiz img {
 	height: inherit;
+	margin: 0px auto;
+
 	
 }
+
 #quiz {
 	font: normal normal normal 1em/1.5 sans-serif;
 	color: black;
@@ -118,7 +121,21 @@ footer p,footer a {
 	width: 700px;
 	margin: 20px auto;
 	text-align: center;
+
+	/* Firefox */
+	/*display:-moz-box;
+	-moz-box-orient:horizontal;
+
+	/* Safari, Opera, and Chrome */
+	/*display:-webkit-box;
+	-webkit-box-orient:horizontal;*/
+
+	/* W3C */
+	/*display:box;
+	box-orient:horizontal;*/
+
 }
+
 
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
@@ -126,11 +143,18 @@ footer p,footer a {
 	height: inherit;
 	width: inherit;
 	text-align: center;
+	display: none;
 }
 
 #choiceSpace {
 	margin: 10px;
 	
+}
+
+/* buttons */
+
+.nav-btns {
+	display: none;
 }
 
 /*choice styling*/
