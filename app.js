@@ -52,12 +52,12 @@ $(function(){
 	// functions
 	function nextQuest() {
 		var curr_quest = $questions.current_question;
-		
+		$('img').fadeOut();
 		if(curr_quest <= 5) {
 			// $quoteSpace.fadeOut('fast');
 			// $choiceSpaces.fadeOut('fast');
 			$questionSpace.fadeOut(1000, function() {
-				$('img').remove();
+					
 				createQuestion($questions.quest_array[curr_quest - 1]);
 			});
 		}

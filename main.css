@@ -107,8 +107,8 @@ footer p,footer a {
 
 /*Quiz Style*/
 
-#questionSpace img {
-	height: 15em;
+#quiz img {
+	height: inherit;
 	
 }
 #quiz {
