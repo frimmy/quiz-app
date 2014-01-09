@@ -56,12 +56,16 @@ $(function(){
 		
 		if(curr_quest < 5) {
 			curr_quest += 1;
+
 			// $quoteSpace.fadeOut('fast');
 			// $choiceSpaces.fadeOut('fast');
+			
 			$questionSpace.fadeOut(function() {
-					
+
 				createQuestion($questions.quest_array[curr_quest - 1]);
+
 			});
+			
 
 			$questions.current_question +=1;
 		}
@@ -75,7 +79,7 @@ $(function(){
 		if(curr_quest > 1) {
 			curr_quest -= 1;
 			
-			$questionSpace.fadeOut(1000, function() {
+			$questionSpace.fadeOut(function() {
 
 				createQuestion($questions.quest_array[curr_quest - 1]);
 
@@ -89,11 +93,12 @@ $(function(){
 	// function for creating questions to iterate through
 	function createQuestion(question) {
 		// sets correct choice
-			
+			// $questionSpace.fadeOut(function(){console.log("Faded Out");});
+
 			/*console.log(question);*/
 			this.correct_choice = question.correct_choice;
 
-			$questionSpace.fadeIn();
+			
 			// populate quote
 			$quoteSpace.text(question.quote);
 			
@@ -102,7 +107,7 @@ $(function(){
 				$choiceSpaces.eq(i).text(question.choices[i]);
 			}
 
-				
+			$questionSpace.fadeIn(function(){console.log("Faded In");});	
 		}
 		
 	
@@ -118,7 +123,7 @@ $(function(){
 		
 		$('.nav-btns').fadeIn('slow');
 
-		$('.nav-btns').fadeIn();
+		// $('.nav-btns').fadeIn();
 		
 		
 		console.log($questions.current_question);	
