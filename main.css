@@ -83,13 +83,8 @@ h1,h2 {
 }
 
 .container {
-	width: 1200px;
-	
-}
-
-.container#content {
-	
-	min-height: 800px;
+	max-width: 1200px;
+	margin: auto;
 }
 
 footer {
@@ -109,20 +104,17 @@ footer p,footer a {
 
 #quiz img {
 	display: block;
-	height: 400px;
+	max-width:100%;
 	margin: 40px auto;
 	border-radius: 5px;	
 }
 
 #quiz {
+	top: 50px;
 	font: normal normal normal 1em/1.5 sans-serif;
-	color: black;
-	height: 250px;
-	width: 700px;
-	margin: 50px auto;
-	padding: 20px;
 	text-align: center;
-
+	margin: auto;
+	min-width: 90%;
 	/* Firefox */
 	/*display:-moz-box;
 	-moz-box-orient:horizontal;
@@ -140,12 +132,9 @@ footer p,footer a {
 
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
-
-	margin: 20px;
-	height: inherit;
-	width: inherit;
+	margin: auto;
 	text-align: center;
-	/*display: block;*/
+	display: inline-block;
 }
 
 #choiceSpace {
