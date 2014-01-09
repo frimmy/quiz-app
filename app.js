@@ -117,9 +117,7 @@ $(function(){
 
 		event.preventDefault();
 
-		$('img, #start').fadeOut(function(){
-			
-		});
+		$('img, #start').fadeOut();
 
 		nextQuest();
 		
