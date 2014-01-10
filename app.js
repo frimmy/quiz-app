@@ -118,15 +118,10 @@ $(function(){
 		event.preventDefault();
 
 		$.when( $('img, #start').fadeOut() ).done(function(){
-			$('.nav-btns').fadeIn(1200);
-			nextQuest();		
+			$('.nav-btns').fadeIn();
+					
 		});
-		
-		
-		
-		// $('.nav-btns').fadeIn();
-		
-		
+		nextQuest();	
 		console.log($questions.current_question);
 		});
 
