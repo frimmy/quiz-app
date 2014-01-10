@@ -52,7 +52,6 @@ table {
 body {
 	padding-top: 50px;
 	text-align: center;
-	min-height: 800px;
 }
 
 
@@ -104,29 +103,17 @@ footer p,footer a {
 
 #quiz img {
 	display: block;
-	max-width:100%;
+	max-width:60%;
 	margin: 40px auto;
-	border-radius: 5px;	
+	border-radius: 100%;
 }
 
 #quiz {
-	top: 50px;
+	top: 0;
 	font: normal normal normal 1em/1.5 sans-serif;
 	text-align: center;
 	margin: auto;
 	min-width: 90%;
-	/* Firefox */
-	/*display:-moz-box;
-	-moz-box-orient:horizontal;
-
-	/* Safari, Opera, and Chrome */
-	/*display:-webkit-box;
-	-webkit-box-orient:horizontal;*/
-
-	/* W3C */
-	/*display:box;
-	box-orient:horizontal;*/
-
 }
 
 
@@ -135,11 +122,11 @@ footer p,footer a {
 	margin: auto;
 	text-align: center;
 	display: inline-block;
+	width: 90%;
 }
 
 #choiceSpace {
 	margin: 10px;
-	
 }
 
 /* buttons */
