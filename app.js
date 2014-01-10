@@ -117,17 +117,17 @@ $(function(){
 
 		event.preventDefault();
 
-		$('img, #start').fadeOut();
-
-		nextQuest();
+		$.when( $('img, #start').fadeOut() ).done(function(){
+			$('.nav-btns').fadeIn(1200);
+			nextQuest();		
+		});
 		
-		$('.nav-btns').fadeIn('slow');
-
+		
+		
 		// $('.nav-btns').fadeIn();
 		
 		
 		console.log($questions.current_question);
-
 		});
 
 

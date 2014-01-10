@@ -48,9 +48,33 @@ table {
 }
 
 /*Begin custom CSS*/
+.centered {
+	/* Internet Explorer 10 */
+display:-ms-flexbox;
+-ms-flex-pack:center;
+-ms-flex-align:center;
+-moz-box-pack:center;
+-moz-box-align:center;
 
+/* Safari, Opera, and Chrome */
+display:-webkit-box;
+-webkit-box-pack:center;
+-webkit-box-align:center;
+
+/* W3C */
+display:box;
+box-pack:center;
+box-align:center;
+}
 body {
 	padding-top: 50px;
+	font-size: 16px;
+	background: #87e0fd; /* FF3.6+ */
+	background: -webkit-linear-gradient(top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%) no-repeat 100%; /* IE10+ */
+	background: -webkit-linear-gradient(bottom, #000000 0%, #53cbf1 40%, #b5c9c9 100%) no-repeat 100%; /* IE10+ */
+	background: linear-gradient(to top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%) no-repeat 100%; /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#05abe0',GradientType=1 ) no-repeat 100%; /* IE6-9 */
+	height: auto;
 	text-align: center;
 }
 
@@ -61,16 +85,8 @@ body {
 	display: inline;
 }
 
-body {
-	font-size: 16px;
-	background: #87e0fd; /* Old browsers */
-	background: -moz-linear-gradient(top,  #000000 0%, #53cbf1 40%, #b5c9c9 100%); /* FF3.6+ */
-	background: -webkit-linear-gradient(top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%); /* IE10+ */
-	background: linear-gradient(to top,  #000000 0%,#53cbf1 40%,#b5c9c9 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#05abe0',GradientType=1 ); /* IE6-9 */
-	
+html {
+	min-height: 100%;
 }
 
 p,span,div,li,a,input,button {
@@ -109,10 +125,12 @@ footer p,footer a {
 }
 
 #quiz {
-	top: 0;
+	position: relative;
+	top: 50px;
 	font: normal normal normal 1em/1.5 sans-serif;
 	text-align: center;
-	margin: auto;
+	margin: 20px auto ;
+	padding: 10px;
 	min-width: 90%;
 }
 
@@ -123,6 +141,7 @@ footer p,footer a {
 	text-align: center;
 	display: inline-block;
 	width: 90%;
+	height: 
 }
 
 #choiceSpace {
