@@ -50,22 +50,23 @@ table {
 /*Begin custom CSS*/
 .centered {
 	/* Internet Explorer 10 */
-display:-ms-flexbox;
--ms-flex-pack:center;
--ms-flex-align:center;
--moz-box-pack:center;
--moz-box-align:center;
+	display:-ms-flexbox;
+	-ms-flex-pack:center;
+	-ms-flex-align:center;
+	-moz-box-pack:center;
+	-moz-box-align:center;
 
-/* Safari, Opera, and Chrome */
-display:-webkit-box;
--webkit-box-pack:center;
--webkit-box-align:center;
+	/* Safari, Opera, and Chrome */
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
 
-/* W3C */
-display:box;
-box-pack:center;
-box-align:center;
+	/* W3C */
+	display:box;
+	box-pack:center;
+	box-align:center;
 }
+
 body {
 	padding-top: 50px;
 	font-size: 16px;
@@ -78,7 +79,9 @@ body {
 	text-align: center;
 }
 
-
+#content {
+	min-height: 800px;
+}
 
 .starter-template img {
 	height: 165px;
@@ -87,6 +90,7 @@ body {
 
 html {
 	min-height: 100%;
+
 }
 
 p,span,div,li,a,input,button {
@@ -103,7 +107,7 @@ h1,h2 {
 }
 
 footer {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	bottom: 10px;
 	text-align: center;
@@ -119,29 +123,28 @@ footer p,footer a {
 
 #quiz img {
 	display: block;
-	max-width:60%;
-	margin: 40px auto;
+	max-width:80%;
+	margin: auto;
 	border-radius: 100%;
 }
 
 #quiz {
 	position: relative;
 	top: 50px;
-	font: normal normal normal 1em/1.5 sans-serif;
+	font: normal normal normal 2em/1.5 sans-serif;
 	text-align: center;
 	margin: 20px auto ;
 	padding: 10px;
-	min-width: 90%;
+	max-width: 75%;
 }
 
 
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
-	margin: auto;
+	margin: 10% auto;
 	text-align: center;
-	display: inline-block;
-	width: 90%;
-	height: 
+	display: none;
+	max-width: 75%;
 }
 
 #choiceSpace {
@@ -153,6 +156,8 @@ footer p,footer a {
 .nav-btns {
 	display: none;
 }
+
+.
 
 #start {
 	margin: 10px auto;
