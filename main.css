@@ -48,6 +48,8 @@ table {
 }
 
 /*Begin custom CSS*/
+
+
 .centered {
 	/* Internet Explorer 10 */
 	display:-ms-flexbox;
@@ -143,7 +145,7 @@ footer p,footer a {
 #questionSpace {
 	margin: 10% auto;
 	text-align: center;
-	display: none;
+	display: inline-block;
 	max-width: 75%;
 }
 
@@ -157,7 +159,6 @@ footer p,footer a {
 	display: none;
 }
 
-.
 
 #start {
 	margin: 10px auto;
