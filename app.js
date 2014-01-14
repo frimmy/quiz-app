@@ -7,6 +7,7 @@ $(function(){
 	var $questionSpace = $('#questionSpace');
 	var $quoteSpace = $('div#quoteSpace');
 	var $choiceSpaces = $('ul#choiceSpace').children();
+	var $choiceConfirms = $('.choicespace-buttons');
 
 	var $quest1 = {
 		quote: "\'This morning I saw a youtube video with a puppy riding a motorcycle. So my bar for stunning is pretty high.\'", 
@@ -46,6 +47,9 @@ $(function(){
 			correct_questions: 0,
 			total_questions: function() {
 				return this.quest_array.length;
+			},
+			currentQuestion: function() {
+				return this.quest_array[this.current_question];
 			}
 		};
 
@@ -54,21 +58,16 @@ $(function(){
 	function nextQuest() {
 		var curr_quest = $questions.current_question;
 		
-		if(curr_quest < 5) {
-			curr_quest += 1;
-
-			// $quoteSpace.fadeOut('fast');
-			// $choiceSpaces.fadeOut('fast');
-			
+		if(curr_quest < 4) {
+			console.log($questions.currentQuestion());
 			$questionSpace.fadeOut(function() {
 				$choiceSpaces.removeClass('choiceSpace-hovered');
-				createQuestion($questions.quest_array[curr_quest - 1]);
-				console.log("called the creatQuestiohn");
-
+				createQuestion($questions.currentQuestion());
+				console.log("called the creatQuestioh");
+				$questions.current_question +=1;
 			});
 			
-
-			$questions.current_question +=1;
+			
 		}
 
 		
@@ -77,12 +76,12 @@ $(function(){
 	function prevQuest() {
 		var curr_quest = $questions.current_question;
 		
-		if(curr_quest > 1) {
+		if(curr_quest > 0) {
 			curr_quest -= 1;
 			
 			$questionSpace.fadeOut(function() {
 				$choiceSpaces.removeClass('choiceSpace-hovered');
-				createQuestion($questions.quest_array[curr_quest - 1]);
+				createQuestion($questions.currentQuestion());
 
 			});
 
@@ -93,25 +92,25 @@ $(function(){
 
 	// function for creating questions to iterate through
 	function createQuestion(question) {
-		// sets correct choice
-			// $questionSpace.fadeOut(function(){console.log("Faded Out");});
-
-			/*console.log(question);*/
-			this.correct_choice = question.correct_choice;
-
-			
-			// populate quote
-			$quoteSpace.text(question.quote);
-			
-			//populate choices
-			for (var i = question.choices.length - 1; i >= 0; i--) {
-				$choiceSpaces.eq(i).text(question.choices[i]);
-			}
-
-			$questionSpace.fadeIn(function(){console.log("Faded In");});	
-		}
+		// populate quote
+		$quoteSpace.text(question.quote);
 		
+		//populate choices
+		for (var i = question.choices.length - 1; i >= 0; i--) {
+			$choiceSpaces.eq(i).text(question.choices[i]);
+		}
+
+		$questionSpace.fadeIn(function(){console.log("Faded In");});	
+	}
 	
+	//function called to check if confirmed submitted 
+	function checkQuote (question, val) {
+		// alert(question.correct_choice);
+		
+		alert(question.correct_choice == val);
+		console.log(question,question.correct_choice);
+	}
+
 	/*start quiz, fade out Cast pic*/
 	$('button#start').on('click', function(event) {
 
@@ -122,7 +121,7 @@ $(function(){
 			console.log("removed classes");
 			// $('#quiz').f		
 		});
-		nextQuest();	
+		createQuestion($questions.currentQuestion());	
 		console.log($questions.current_question);
 		});
 
@@ -147,10 +146,12 @@ $(function(){
 		/* Act on the event */
 		$choiceSpaces.removeClass('choiceSpace-hovered');
 		$(this).addClass('choiceSpace-hovered');
-		console.log($(this)+"clicked");
+		// console.log($(this).val());
+		checkQuote($questions.currentQuestion(),$(this).val());
+		console.log("called checkQuote fun");
 	});
 
 	
 	/*Modal for submit button*/
-	
+
 });

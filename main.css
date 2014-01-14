@@ -53,6 +53,14 @@ table {
 	display: none;
 }
 
+.main-shown {
+	display: inline-block;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
 .centered {
 	/* Internet Explorer 10 */
 	display:-ms-flexbox;
@@ -85,7 +93,7 @@ body {
 }
 
 #content {
-	min-height: 800px;
+	min-height: 700px;
 }
 
 .starter-template img {
@@ -95,7 +103,6 @@ body {
 
 html {
 	min-height: 100%;
-
 }
 
 p,span,div,li,a,input,button {
@@ -114,7 +121,7 @@ h1,h2 {
 footer {
 	position: relative;
 	width: 100%;
-	bottom: 10px;
+	/*bottom: 10px;*/
 	text-align: center;
 }
 
@@ -142,6 +149,7 @@ footer p,footer a {
 	margin: 20px auto ;
 	padding: 10px;
 	max-width: 75%;
+
 }
 
 
@@ -154,6 +162,7 @@ footer p,footer a {
 	max-width: 75%;
 	position: relative;
 	top: 30px;
+	min-height: 245px;
 }
 
 #choiceSpace {
@@ -172,10 +181,6 @@ footer p,footer a {
 #start {
 	position: relative;
 	top: 35px;
-}
-
-#u-sure {
-	display: none;
 }
 
 /*choice styling*/
@@ -200,4 +205,8 @@ ul#choiceSpace li {
 	-ms-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;:;
+}
+
+.choicespace-buttons {
+	width: 105px;
 }
