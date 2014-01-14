@@ -50,21 +50,27 @@ $(function(){
 			},
 			currentQuestion: function() {
 				return this.quest_array[this.current_question];
+			},
+			currentQuestionCount: function() {
+				return this.current_question + 1;
 			}
 		};
 
 	/*functions*/
 	
 	function nextQuest() {
-		var curr_quest = $questions.current_question;
-		
-		if(curr_quest < 4) {
-			console.log($questions.currentQuestion());
+				
+		if($questions.current_question < 4) {
+			
+			//increment the current question to queue the next question
+			$questions.current_question +=1;
+
+			//populate the next question
 			$questionSpace.fadeOut(function() {
 				$choiceSpaces.removeClass('choiceSpace-hovered');
 				createQuestion($questions.currentQuestion());
-				console.log("called the creatQuestioh");
-				$questions.current_question +=1;
+				console.log("called the creatQuestion");
+				
 			});
 			
 			
@@ -74,11 +80,12 @@ $(function(){
 	}
 
 	function prevQuest() {
-		var curr_quest = $questions.current_question;
-		
-		if(curr_quest > 0) {
-			curr_quest -= 1;
+				
+		if($questions.current_question > 0) {
+			//decrement the current question to queue the previous question
+			$questions.current_question -= 1;
 			
+			//populate the previous question
 			$questionSpace.fadeOut(function() {
 				$choiceSpaces.removeClass('choiceSpace-hovered');
 				createQuestion($questions.currentQuestion());
@@ -100,7 +107,9 @@ $(function(){
 			$choiceSpaces.eq(i).text(question.choices[i]);
 		}
 
-		$questionSpace.fadeIn(function(){console.log("Faded In");});	
+		$('#quest_num').text('Question ' + $questions.currentQuestionCount() + " of 5" );
+		$questionSpace.fadeIn();
+
 	}
 	
 	//function called to check if confirmed submitted 
