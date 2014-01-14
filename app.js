@@ -61,7 +61,7 @@ $(function(){
 			// $choiceSpaces.fadeOut('fast');
 			
 			$questionSpace.fadeOut(function() {
-
+				$choiceSpaces.removeClass('choiceSpace-hovered');
 				createQuestion($questions.quest_array[curr_quest - 1]);
 				console.log("called the creatQuestiohn");
 
@@ -81,7 +81,7 @@ $(function(){
 			curr_quest -= 1;
 			
 			$questionSpace.fadeOut(function() {
-
+				$choiceSpaces.removeClass('choiceSpace-hovered');
 				createQuestion($questions.quest_array[curr_quest - 1]);
 
 			});
@@ -117,9 +117,10 @@ $(function(){
 
 		event.preventDefault();
 
-		$.when( $('img, #start').fadeOut() ).done(function(){
-			$('.nav-btns').fadeIn();
-					
+		$('img, #start').fadeOut(function(){
+			$('.nav-btns, #quiz').removeClass('main-hidden').fadeIn();
+			console.log("removed classes");
+			// $('#quiz').f		
 		});
 		nextQuest();	
 		console.log($questions.current_question);
@@ -130,7 +131,6 @@ $(function(){
 	$('button#nextQuest, button#prevQuest').on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		
 
 		if(this.id === "prevQuest"){
 			console.log(this.id);
@@ -139,8 +139,18 @@ $(function(){
 			console.log(this.id);
 			nextQuest();
 		}
+
+	});
+	/* highlight effects for choice selection*/
+	$choiceSpaces.on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$choiceSpaces.removeClass('choiceSpace-hovered');
+		$(this).addClass('choiceSpace-hovered');
+		console.log($(this)+"clicked");
 	});
 
 	
+	/*Modal for submit button*/
 	
 });

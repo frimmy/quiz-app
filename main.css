@@ -49,6 +49,9 @@ table {
 
 /*Begin custom CSS*/
 
+.main-hidden {
+	display: none;
+}
 
 .centered {
 	/* Internet Explorer 10 */
@@ -123,17 +126,18 @@ footer p,footer a {
 
 /*Quiz Style*/
 
-#quiz img {
+#content img {
 	display: block;
-	max-width:80%;
+	max-width:70%;
 	margin: auto;
 	border-radius: 100%;
+	top: 30px;
+	position: relative;
 }
 
 #quiz {
 	position: relative;
-	top: 50px;
-	font: normal normal normal 2em/1.5 sans-serif;
+	font: normal normal normal 1.5em/1.25 Helvetica sans-serif;
 	text-align: center;
 	margin: 20px auto ;
 	padding: 10px;
@@ -143,10 +147,13 @@ footer p,footer a {
 
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
-	margin: 10% auto;
+	padding: 1%;
+	margin: 10% 10%;
 	text-align: center;
 	display: inline-block;
 	max-width: 75%;
+	position: relative;
+	top: 30px;
 }
 
 #choiceSpace {
@@ -157,11 +164,18 @@ footer p,footer a {
 
 .nav-btns {
 	display: none;
+	position: absolute;
+	top: 40%;
 }
 
 
 #start {
-	margin: 10px auto;
+	position: relative;
+	top: 35px;
+}
+
+#u-sure {
+	display: none;
 }
 
 /*choice styling*/
@@ -170,7 +184,7 @@ ul#choiceSpace {
 	width: 100px;
 	
 }
-ul#choiceSpace li:hover, ul#choiceSpace li {
+ul#choiceSpace li {
 	/*display: none;*/
 	margin: 3px;
     border-radius: 5px;
@@ -178,11 +192,12 @@ ul#choiceSpace li:hover, ul#choiceSpace li {
     cursor: pointer;
 }
 
-ul#choiceSpace li:hover, ul#choiceSpace li:focus {
+.choiceSpace-hovered, ul#choiceSpace li:hover{
+
 	color: #fff;
 	-webkit-transition: .5s;
 	-moz-transition: .5s;
 	-ms-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;:;
-};
+}
