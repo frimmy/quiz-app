@@ -15,14 +15,14 @@ $(function(){
 		choices: ["Leslie", "Tom", "Ann","Gary"], 
 		correct_choice: 1,
 		correct:0,
-		youTubeLink: '' };
+		vidFile: 'video/Parks and Recreation - Tom explains Apps and Zerts.mp4' };
 
 	var $quest2 = {
 		quote: "\'Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.\'",
 		choices: ["Andy", "April", "Leslie","Ron"],
 		correct_choice: 0,
 		correct:0,
-		youTubeLink: ''};
+		vidFile: ''};
 
 	
 	var $quest3 = {
@@ -30,14 +30,14 @@ $(function(){
 		choices: ["Leslie", "Tom", "Ron","Chris"],
 		correct_choice: 2,
 		correct:0,
-		youTubeLink: ''};
+		vidFile: ''};
 
 	var $quest4 = {
 		quote: "\'My mom's Puerto Rican. That's why I'm so lively and colorful.\'",
 		choices: ["Ann", "Tom", "Andy","April"],
 		correct_choice: 3,
 		correct:0,
-		youTubeLink: ''};
+		vidFile: ''};
 
 
 	var $quest5 = {
@@ -45,7 +45,7 @@ $(function(){
 		choices: ["Jean Ralphio", "Tom", "Ron","Chris"],
 		correct_choice: 0,
 		correct:0,
-		youTubeLink: ''};
+		vidFile: ''};
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
@@ -124,11 +124,17 @@ $(function(){
 	//function called to close the submit modal
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
-		/* Act on the event */
+		/* When user clicks 'Yup' button, closes the modal*/
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
-			/* Act on the event */
-			$('#modalVids').modal('show');
+			/* When the modal closes, opens the video modal */
+			$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
+				event.preventDefault();
+				
+				/*pause the video file on modal close*/
+				document.getElementById('fittedVid').pause();
+				console.log('paused a vid');
+			});
 
 		});
 
@@ -164,6 +170,7 @@ $(function(){
 		}
 
 	});
+
 	/* highlight effects for choice selection*/
 	$choiceSpaces.on('click', function(event) {
 		event.preventDefault();
