@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,70 +30,100 @@
     }
   </style>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://frimmy.github.io/"><h1>Know Your Parks'n Rec?</h1>   </a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://frimmy.github.io/">
+                    <h1>Know Your Parks'n Rec?</h1>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a>
+                    </li>
+                    <li><a href="http://adrianfrimpong.com/">Blog</a>
+                    </li>
+                    <li><a href="mailto:adrianfrimpong@gmail.com?Subject=Hello from frimmy.github.io">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="http://adrianfrimpong.com/">Blog</a></li>
-            <li><a href="mailto:adrianfrimpong@gmail.com?Subject=Hello from frimmy.github.io">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </div>
-    
+
     <div class="container" id="content">
-        <!-- Quiz section where questions will be looped through -->        
-                
-        
+        <!-- Quiz section where questions will be looped through -->
+
+
         <!-- Buttons are used to start and move through quiz -->
 
         <img src="images/parks-and-rec.jpg" alt="parks and rec cast">
 
         <section id="quiz" class="main-hidden">
-                                   
-            
-            <button class="btn btn-default nav-btns" id="prevQuest"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+
+            <button class="btn btn-default nav-btns" id="prevQuest">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
             <div id="questionSpace">
                 <div id="quest_num"></div>
                 <div id="quoteSpace"></div>
-                    
+                
                 <ul id="choiceSpace">
                     <li value="0"></li>
                     <li value="1"></li>
                     <li value="2"></li>
-                    <li value="3"></li>                
+                    <li value="3"></li>
                 </ul>
+                <button class="choicespace-buttons btn btn-default" data-toggle="modal" data-target="#myModal">Submit</button>
 
-                <button class="choicespace-buttons btn btn-danger">You Sure?</button>
-                <button class="choicespace-buttons btn btn-warning">Still Thinking?</button>
-                
             </div>
 
-            <button class="btn btn-default nav-btns" id="nextQuest"><span class="glyphicon glyphicon-chevron-right"></span></button>  
-            
-
-            
+            <button class="btn btn-default nav-btns" id="nextQuest">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
         </section>
+
+        <!-- Modal Dialog Upon Submit -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" id="quizModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Sure 'bout that, Skipper?</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                                <button id="confirm" class="choicespace-buttons btn btn-success">YUP</button>
+                                <button class="choicespace-buttons btn btn-primary" data-dismiss="modal">Still Thinking...</button>
+
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
         <button class="btn btn-default" id="start">Start</button>
-      
-    </div><!-- container -->
-    
-    <footer><p>Created by <a href="https://frimmy.github.io">Adrian Frimpong</a></p></footer>  
-  </div>
+
+    </div>
+    <!-- container -->
+
+    <footer>
+        <p>Created by <a href="https://frimmy.github.io">Adrian Frimpong</a>
+        </p>
+    </footer>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -101,5 +132,6 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-  </body>
+</body>
+
 </html>

@@ -67,16 +67,12 @@ $(function(){
 
 			//populate the next question
 			$questionSpace.fadeOut(function() {
-				$choiceSpaces.removeClass('choiceSpace-hovered');
+				$choiceSpaces.removeClass('choiceSpace-selected');
 				createQuestion($questions.currentQuestion());
 				console.log("called the creatQuestion");
 				
-			});
-			
-			
+			});		
 		}
-
-		
 	}
 
 	function prevQuest() {
@@ -87,14 +83,13 @@ $(function(){
 			
 			//populate the previous question
 			$questionSpace.fadeOut(function() {
-				$choiceSpaces.removeClass('choiceSpace-hovered');
+				$choiceSpaces.removeClass('choiceSpace-selected');
 				createQuestion($questions.currentQuestion());
 
 			});
 
 			$questions.current_question = curr_quest;
 		}
-
 	}
 
 	// function for creating questions to iterate through
@@ -119,6 +114,13 @@ $(function(){
 		alert(question.correct_choice == val);
 		console.log(question,question.correct_choice);
 	}
+
+	//function called to close the submit modal
+	$('#confirm').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$('#myModal').modal('hide');
+		});
 
 	/*start quiz, fade out Cast pic*/
 	$('button#start').on('click', function(event) {
@@ -153,9 +155,9 @@ $(function(){
 	$choiceSpaces.on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$choiceSpaces.removeClass('choiceSpace-hovered');
-		$(this).addClass('choiceSpace-hovered');
-		// console.log($(this).val());
+		$choiceSpaces.removeClass('choiceSpace-selected');
+		$(this).addClass('choiceSpace-selected');
+		console.log('added choiceSpace-selected class');
 		checkQuote($questions.currentQuestion(),$(this).val());
 		console.log("called checkQuote fun");
 	});

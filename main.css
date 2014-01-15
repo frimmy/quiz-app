@@ -197,16 +197,20 @@ ul#choiceSpace li {
     cursor: pointer;
 }
 
-.choiceSpace-hovered, ul#choiceSpace li:hover{
+.choiceSpace-selected, ul#choiceSpace li:hover{
 
 	color: #fff;
 	-webkit-transition: .5s;
 	-moz-transition: .5s;
 	-ms-transition: .5s;
 	-o-transition: .5s;
-	transition: .5s;:;
+	transition: .5s;
 }
 
 .choicespace-buttons {
 	width: 105px;
+}
+
+#quizModal {
+	top: 130px;
 }
