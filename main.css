@@ -106,12 +106,14 @@ html {
 }
 
 p,span,div,li,a,input,button {
-	font-family: ARVO, serif;
+	font: normal normal bold 1em/.9em 'Exo 2', helvetica, sans-serif;;
 }
 
 h1,h2 {
 	font-family: LOBSTER, cursive;
 }
+
+
 
 .container {
 	max-width: 1200px;
@@ -144,7 +146,6 @@ footer p,footer a {
 
 #quiz {
 	position: relative;
-	font: normal normal normal 1.5em/1.25 Helvetica sans-serif;
 	text-align: center;
 	margin: 20px auto ;
 	padding: 10px;
@@ -163,6 +164,7 @@ footer p,footer a {
 	position: relative;
 	top: 30px;
 	min-height: 245px;
+
 }
 
 #choiceSpace {
@@ -211,6 +213,10 @@ ul#choiceSpace li {
 	width: 105px;
 }
 
-#quizModal {
+.modal {
+	overflow-y:auto;
+}
+
+.modal-dialog {
 	top: 130px;
 }

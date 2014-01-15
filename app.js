@@ -8,38 +8,44 @@ $(function(){
 	var $quoteSpace = $('div#quoteSpace');
 	var $choiceSpaces = $('ul#choiceSpace').children();
 	var $choiceConfirms = $('.choicespace-buttons');
+	var $submitModal = $('#myModal');
 
 	var $quest1 = {
 		quote: "\'This morning I saw a youtube video with a puppy riding a motorcycle. So my bar for stunning is pretty high.\'", 
 		choices: ["Leslie", "Tom", "Ann","Gary"], 
 		correct_choice: 1,
-		correct:0 };
+		correct:0,
+		youTubeLink: '' };
 
 	var $quest2 = {
 		quote: "\'Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.\'",
 		choices: ["Andy", "April", "Leslie","Ron"],
 		correct_choice: 0,
-		correct:0};
+		correct:0,
+		youTubeLink: ''};
 
 	
 	var $quest3 = {
 		quote: "\'I'm a simple man. I like pretty, dark-haired women and breakfast food.\'",
 		choices: ["Leslie", "Tom", "Ron","Chris"],
 		correct_choice: 2,
-		correct:0};
+		correct:0,
+		youTubeLink: ''};
 
 	var $quest4 = {
 		quote: "\'My mom's Puerto Rican. That's why I'm so lively and colorful.\'",
 		choices: ["Ann", "Tom", "Andy","April"],
 		correct_choice: 3,
-		correct:0};
+		correct:0,
+		youTubeLink: ''};
 
 
 	var $quest5 = {
 		quote: "\'My parents had it amended. I don't get anything until I'm 50, which is a waste because I'm going to be a billionaire in Costa Rica by then. Eatin' dolphin and hangin' out with lady singers.\'",
 		choices: ["Jean Ralphio", "Tom", "Ron","Chris"],
 		correct_choice: 0,
-		correct:0};
+		correct:0,
+		youTubeLink: ''};
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
@@ -119,8 +125,15 @@ $(function(){
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$('#myModal').modal('hide');
+		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			$('#modalVids').modal('show');
+
 		});
+
+
+	});
 
 	/*start quiz, fade out Cast pic*/
 	$('button#start').on('click', function(event) {
@@ -163,6 +176,4 @@ $(function(){
 	});
 
 	
-	/*Modal for submit button*/
-
 });
