@@ -2,6 +2,7 @@ $(function(){
 	
 	var score = 0;
 	var current_question = 1;
+	var guess;
 	// cache callable ids
 	var $questionSpace = $('#questionSpace');
 	var $quoteSpace = $('div#quoteSpace');
@@ -64,6 +65,9 @@ $(function(){
 			},
 			currentQuestionVid: function(){
 				return this.quest_array[this.current_question].vidFile;
+			},
+			currentQuestionAnswered: function(){
+				return this.quest_array[this.current_question].answered;
 			}
 		};
 
@@ -119,17 +123,21 @@ $(function(){
 	}
 	
 	//function called to check if confirmed submitted 
-	function checkQuote (question, val) {
+	function checkQuote() {
 		// alert(question.correct_choice);
+		// sets checkQuest to the current question
+		var checkQuest = $questions.currentQuestion();
 		
-		alert(question.correct_choice == val);
-		console.log(question,question.correct_choice);
+		//checks against the global variable guess
+		alert(checkQuest.correct_choice == guess);
+		console.log(checkQuest,checkQuest.correct_choice);
 	}
 
 	//function called to close the submit modal
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
 		/* When user clicks 'Yup' button, closes the modal*/
+		checkQuote();
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
 			/* When the modal closes, opens the video modal and
@@ -186,8 +194,8 @@ $(function(){
 		$choiceSpaces.removeClass('choiceSpace-selected');
 		$(this).addClass('choiceSpace-selected');
 		console.log('added choiceSpace-selected class');
-		checkQuote($questions.currentQuestion(),$(this).val());
-		console.log("called checkQuote fun");
+		//sets the global variable guess when user clicks a choice
+		guess = $(this).val();
 	});
 
 	
