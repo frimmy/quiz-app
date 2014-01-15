@@ -1,5 +1,4 @@
 $(function(){
-	// var questions = [];
 	
 	var score = 0;
 	var current_question = 1;
@@ -9,43 +8,46 @@ $(function(){
 	var $choiceSpaces = $('ul#choiceSpace').children();
 	var $choiceConfirms = $('.choicespace-buttons');
 	var $submitModal = $('#myModal');
+	var $video = document.getElementById('fittedVid');
+	
+	// var questions = [];
 
 	var $quest1 = {
 		quote: "\'Zerts’ are what I call desserts. ‘Trée-trées’ are entrées. I call sandwiches ‘sammies’, ‘sandoozles’ or ‘Adam Sandlers’. Air conditioners are ‘cool blasterz’ with a ‘z’ - I don’t know where that came from. I call cakes ‘big ole cookies’. I call noodles ‘long-ass rice’. Fried chicken is ‘fry-fry chicky-chick’. Chicken parm is ‘chicky-chicky-parm-parm’. Chicken cacciatore? ‘Chicky-cacc’. I call eggs ‘pre-birds’, or ‘future birds’. Root beer is ‘super water’. Tortillas are ‘bean blankets’. And I call forks ‘food rakes.\'", 
 		choices: ["Leslie", "Tom", "Ann","Gary"], 
 		correct_choice: 1,
-		correct:0,
+		answered: false,
 		vidFile: 'video/Parks and Recreation - Tom explains Apps and Zerts.mp4' };
 
 	var $quest2 = {
 		quote: "\'Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.\'",
 		choices: ["Andy", "April", "Leslie","Ron"],
 		correct_choice: 0,
-		correct:0,
-		vidFile: ''};
+		answered: false,
+		vidFile: 'video/Parks and Recreation- You could have network connectivity problems.mp4'};
 
 	
 	var $quest3 = {
 		quote: "\'I'm a simple man. I like pretty, dark-haired women and breakfast food.\'",
 		choices: ["Leslie", "Tom", "Ron","Chris"],
 		correct_choice: 2,
-		correct:0,
-		vidFile: ''};
+		answered: false,
+		vidFile: 'video/Ron Swansons a simple man.mp4'};
 
 	var $quest4 = {
 		quote: "\'My mom's Puerto Rican. That's why I'm so lively and colorful.\'",
 		choices: ["Ann", "Tom", "Andy","April"],
 		correct_choice: 3,
-		correct:0,
-		vidFile: ''};
+		answered: false,
+		vidFile: 'video/Parks and Recreation - April- Im so lively and colorful.mp4'};
 
 
 	var $quest5 = {
-		quote: "\'My parents had it amended. I don't get anything until I'm 50, which is a waste because I'm going to be a billionaire in Costa Rica by then. Eatin' dolphin and hangin' out with lady singers.\'",
+		quote: "\'Yesterday if you would’ve asked me, I would’ve said no. But thank God my grandfather just died so I am A-FLUUUUSHED WITH CAAAAASH!\'",
 		choices: ["Jean Ralphio", "Tom", "Ron","Chris"],
 		correct_choice: 0,
-		correct:0,
-		vidFile: ''};
+		answered: false,
+		vidFile: 'video/Jean-Ralphio - Flushed With Cash.mp4'};
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
@@ -59,6 +61,9 @@ $(function(){
 			},
 			currentQuestionCount: function() {
 				return this.current_question + 1;
+			},
+			currentQuestionVid: function(){
+				return this.quest_array[this.current_question].vidFile;
 			}
 		};
 
@@ -127,12 +132,15 @@ $(function(){
 		/* When user clicks 'Yup' button, closes the modal*/
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
-			/* When the modal closes, opens the video modal */
+			/* When the modal closes, opens the video modal and
+			sets the video src file to the current question's video file*/
+			$video.src = $questions.currentQuestionVid();
+			console.log($questions.currentQuestionVid());
 			$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
 				event.preventDefault();
 				
 				/*pause the video file on modal close*/
-				document.getElementById('fittedVid').pause();
+				$video.pause();
 				console.log('paused a vid');
 			});
 
