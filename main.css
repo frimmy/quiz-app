@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url(http://fonts.googleapis.com/css?family=Exo+2&subset=latin,latin-ext,cyrillic);
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -49,6 +50,7 @@ table {
 
 /*Begin custom CSS*/
 
+
 .main-hidden {
 	display: none;
 }
@@ -60,24 +62,6 @@ table {
 	-ms-transition: 1s;
 	-o-transition: 1s;
 	transition: 1s;
-}
-.centered {
-	/* Internet Explorer 10 */
-	display:-ms-flexbox;
-	-ms-flex-pack:center;
-	-ms-flex-align:center;
-	-moz-box-pack:center;
-	-moz-box-align:center;
-
-	/* Safari, Opera, and Chrome */
-	display:-webkit-box;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
-
-	/* W3C */
-	display:box;
-	box-pack:center;
-	box-align:center;
 }
 
 body {
@@ -153,30 +137,33 @@ footer p,footer a {
 
 }
 
-
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
 	padding: 1%;
-	margin: 10% 10%;
+	margin: 10px;
 	text-align: center;
 	display: inline-block;
 	max-width: 75%;
 	position: relative;
 	top: 30px;
-	min-height: 245px;
+	min-height: 280px;
 
 }
 
-#choiceSpace {
+#quoteSpace, #quest_num {
 	margin: 10px;
 }
 
+#quoteSpace {
+	text-align: justify;
+	font-size: .9em;
+	line-height: 1.5em;
+}
 /* buttons */
 
 .nav-btns {
 	display: none;
-	position: absolute;
-	top: 200px;
+	position: relative;
 }
 
 
@@ -186,8 +173,10 @@ footer p,footer a {
 }
 
 /*choice styling*/
+
+
 ul#choiceSpace {
-	margin: 0px auto;	
+	margin: 0px auto 20px;	
 	width: 100px;
 	
 }
@@ -198,6 +187,7 @@ ul#choiceSpace li {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 .choiceSpace-selected, ul#choiceSpace li:hover{
 
@@ -213,6 +203,7 @@ ul#choiceSpace li {
 	width: 105px;
 }
 
+/* Modal stylings */
 .modal {
 	overflow-y:auto;
 }

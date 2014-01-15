@@ -11,7 +11,7 @@ $(function(){
 	var $submitModal = $('#myModal');
 
 	var $quest1 = {
-		quote: "\'This morning I saw a youtube video with a puppy riding a motorcycle. So my bar for stunning is pretty high.\'", 
+		quote: "\'Zerts’ are what I call desserts. ‘Trée-trées’ are entrées. I call sandwiches ‘sammies’, ‘sandoozles’ or ‘Adam Sandlers’. Air conditioners are ‘cool blasterz’ with a ‘z’ - I don’t know where that came from. I call cakes ‘big ole cookies’. I call noodles ‘long-ass rice’. Fried chicken is ‘fry-fry chicky-chick’. Chicken parm is ‘chicky-chicky-parm-parm’. Chicken cacciatore? ‘Chicky-cacc’. I call eggs ‘pre-birds’, or ‘future birds’. Root beer is ‘super water’. Tortillas are ‘bean blankets’. And I call forks ‘food rakes.\'", 
 		choices: ["Leslie", "Tom", "Ann","Gary"], 
 		correct_choice: 1,
 		correct:0,
