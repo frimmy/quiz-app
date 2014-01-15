@@ -140,7 +140,7 @@ footer p,footer a {
 /*Hide questions as default (display when user selects start)*/
 #questionSpace {
 	padding: 1%;
-	margin: 10px;
+	margin: 10px auto;
 	text-align: center;
 	display: inline-block;
 	max-width: 75%;
@@ -150,6 +150,12 @@ footer p,footer a {
 
 }
 
+.quiz-nav {
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	padding: 5px;
+}
 #quoteSpace, #quest_num {
 	margin: 10px;
 }
