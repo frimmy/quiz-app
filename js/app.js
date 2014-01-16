@@ -137,7 +137,7 @@ $(function(){
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
 		/* When user clicks 'Yup' button, closes the modal*/
-		checkQuote();
+		$('#modalVidsLabel').text(checkQuote());
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
 			/* When the modal closes, opens the video modal and
