@@ -131,8 +131,10 @@
                             <h4 class="modal-title" id="modalVidsLabel">Correct/Wrong</h4>
                         </div>
                         <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, similique, dignissimos, autem, inventore iure explicabo magni illo tenetur ipsum necessitatibus vitae perspiciatis non reprehenderit placeat ad consequuntur hic veniam qui.
-                            <video id="fittedVid" src="video/Parks and Recreation - Tom explains Apps and Zerts.mp4" width="420" height="315" frameborder="0" allowfullscreen controls autobuffer></video>
+                            <div class="fittedVid">
+                                <video id="fittedVid" src="video/Parks and Recreation - Tom explains Apps and Zerts.mp4" width="420" height="315" frameborder="0" allowfullscreen controls autobuffer></video>
+                            </div>                            
+
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -152,14 +154,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            /*Modal for submit button*/
-            $('.modal-body').fitVids();
-        });
-    </script>
+    
 </body>
 
 </html>

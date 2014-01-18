@@ -217,3 +217,17 @@ ul#choiceSpace li {
 .modal-dialog {
 	top: 130px;
 }
+
+.fittedVid {
+	width: 100%;
+	padding-bottom: 56.25%;
+	position: relative;
+}
+
+video {
+	position: absolute;
+	padding: 0;
+	width: 100%;
+	top: 0;
+	left:0;
+}
