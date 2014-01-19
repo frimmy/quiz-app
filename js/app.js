@@ -31,9 +31,15 @@ $(function(){
 		//function called to check if confirmed submitted 
 		this.checkQuote = function() {
 	
-			//checks against the global variable guess
-			$('#modalVidsLabel').text(this.answer(guess)? "Correct!" : "Incorrect");
-			$('#modalVidsLabelAnswer').text("Answer "+ this.correctChoice);
+			//checks against the global variable guess!
+			if (!this.answered) {
+				$('#modalVidsLabel').text(this.answer(guess)? "Correct!" : "Incorrect");
+				$('#modalVidsLabelAnswer').text("Answer "+ this.correctChoice);
+				
+				if (this.answer(guess)){
+					$questions.correct_questions+=1;
+				}
+			}
 		};
 		this.answered = false;
 		this.status = "Incorrect";
@@ -111,9 +117,7 @@ $(function(){
 			//populate the next question
 			$questionSpace.fadeOut(function() {
 				$choiceSpaces.removeClass('choiceSpace-selected');
-				createQuestion($questions.currentQuestion());
-				console.log("called the creatQuestion");
-				
+				createQuestion($questions.currentQuestion());				
 			});		
 		}
 	}
@@ -165,15 +169,15 @@ $(function(){
 
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
-
+			console.log("called the weird modal hide func");
 			/* When the modal closes, opens the video modal and
 			sets the video src file to the current question's video file*/
 			$video.src = confirmQuestion.vidFile;
 			
 			/*Play vid on opening the modalVids*/
 			$video.play();
-			
-			$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
+		});
+		$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
 				event.preventDefault();
 				
 				/*pause the video file on modal close*/
@@ -182,10 +186,6 @@ $(function(){
 				/*To-Do: Update Answered Status after a user has answered a question*/
 				$questionStatus.text(confirmQuestion.status).fadeIn('slow');
 			});
-
-		});
-
-
 	});
 
 	/*start quiz, fade out Cast pic*/
@@ -193,7 +193,7 @@ $(function(){
 
 		event.preventDefault();
 
-		$('img, #start').fadeOut(function(){
+		$('img, #start').fadeOut('slow',function(){
 			$('.nav-btns, #quiz').removeClass('main-hidden').fadeIn();
 			console.log("removed classes");
 			// $('#quiz').f		
