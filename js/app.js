@@ -129,15 +129,16 @@ $(function(){
 		var checkQuest = $questions.currentQuestion();
 		
 		//checks against the global variable guess
-		alert(checkQuest.correct_choice == guess);
+		$('#modalVidsLabel').text(checkQuest.correct_choice == guess ? "Correct!" : "Incorrect");
 		console.log(checkQuest,checkQuest.correct_choice);
 	}
 
-	//function called to close the submit modal
+	//submit modal function calls
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
 		/* When user clicks 'Yup' button, closes the modal*/
 		$('#modalVidsLabel').text(checkQuote());
+
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
 			/* When the modal closes, opens the video modal and
