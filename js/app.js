@@ -12,43 +12,51 @@ $(function(){
 	var $video = document.getElementById('fittedVid');
 	
 	// var questions = [];
+	function Question(quote,choices,correct_choice,vidFile){
+		this.quote = quote;
+		this.choices = choices;
+		this.vidFile = vidFile;
+		this.correctChoice = this.choices[correct_choice];
+		this.answer = function(guess) {
+			return guess == correct_choice;
+		};
+	}
 
-	var $quest1 = {
-		quote: "\'Zerts’ are what I call desserts. ‘Trée-trées’ are entrées. I call sandwiches ‘sammies’, ‘sandoozles’ or ‘Adam Sandlers’. Air conditioners are ‘cool blasterz’ with a ‘z’ - I don’t know where that came from. I call cakes ‘big ole cookies’. I call noodles ‘long-ass rice’. Fried chicken is ‘fry-fry chicky-chick’. Chicken parm is ‘chicky-chicky-parm-parm’. Chicken cacciatore? ‘Chicky-cacc’. I call eggs ‘pre-birds’, or ‘future birds’. Root beer is ‘super water’. Tortillas are ‘bean blankets’. And I call forks ‘food rakes.\'", 
-		choices: ["Leslie", "Tom", "Ann","Gary"], 
-		correct_choice: 1,
-		answered: false,
-		vidFile: 'video/Parks and Recreation - Tom explains Apps and Zerts.mp4' };
-
-	var $quest2 = {
-		quote: "\'Leslie, I typed your symptoms into the thing up here and it says you could have network connectivity problems.\'",
-		choices: ["Andy", "April", "Leslie","Ron"],
-		correct_choice: 0,
-		answered: false,
-		vidFile: 'video/Parks and Recreation- You could have network connectivity problems.mp4'};
+	var $quest1 = new Question("\'Zerts’ are what I call desserts. ‘Trée-trées’" + 
+		" are entrées. I call sandwiches ‘sammies’, ‘sandoozles’ or " + 
+		" ‘Adam Sandlers’. Air conditioners are ‘cool blasterz’ with a ‘z’." + 
+		" I don’t know where that came from. I call cakes ‘big ole cookies’. I " +
+		" call noodles ‘long-ass rice’. Fried chicken is ‘fry-fry chicky-chick’. " + 
+		" Chicken parm is ‘chicky-chicky-parm-parm’. Chicken cacciatore? ‘Chicky-cacc’. " + 
+		" I call eggs ‘pre-birds’, or ‘future birds’. Root beer is ‘super water’." + 
+		" Tortillas are ‘bean blankets’. And I call forks ‘food rakes.\'",
+		["Leslie", "Tom", "Ann","Gary"],
+		1,
+		"video/Parks and Recreation - Tom explains Apps and Zerts.mp4");
+	
+	var $quest2 = new Question("\'Leslie, I typed your symptoms into the thing up" + 
+		"here and it says you could have network connectivity problems.\'",
+		["Andy", "April", "Leslie","Ron"],
+		0,
+		'video/Parks and Recreation- You could have network connectivity problems.mp4');
 
 	
-	var $quest3 = {
-		quote: "\'I'm a simple man. I like pretty, dark-haired women and breakfast food.\'",
-		choices: ["Leslie", "Tom", "Ron","Chris"],
-		correct_choice: 2,
-		answered: false,
-		vidFile: 'video/Ron Swansons a simple man.mp4'};
+	var $quest3 = new Question("\'I'm a simple man. I like pretty, dark-haired " + "women and breakfast food.\'",
+	["Leslie", "Tom", "Ron","Chris"],
+	2,
+	'video/Ron Swansons a simpleman.mp4');
 
-	var $quest4 = {
-		quote: "\'My mom's Puerto Rican. That's why I'm so lively and colorful.\'",
-		choices: ["Ann", "Tom", "Andy","April"],
-		correct_choice: 3,
-		answered: false,
-		vidFile: 'video/Parks and Recreation - April- Im so lively and colorful.mp4'};
+	var $quest4 = new Question("\'My mom's Puerto Rican. That's why I'm so lively" + 
+		"and colorful.\'",
+		["Ann", "Tom", "Andy","April"],
+		3,
+		'video/Parks and Recreation - April- Im so lively and colorful.mp4');
 
 
-	var $quest5 = {
-		quote: "\'Yesterday if you would’ve asked me, I would’ve said no. But thank God my grandfather just died so I am A-FLUUUUSHED WITH CAAAAASH!\'",
-		choices: ["Jean Ralphio", "Tom", "Ron","Chris"],
-		correct_choice: 0,
-		answered: false,
-		vidFile: 'video/Jean-Ralphio - Flushed With Cash.mp4'};
+	var $quest5 = new Question("\'Yesterday if you would’ve asked me, I would’ve said no. But thank God my grandfather just died so I am A-FLUUUUSHED WITH CAAAAASH!\'",
+		["Jean Ralphio", "Tom", "Ron","Chris"],
+		0,
+		'video/Jean-Ralphio - Flushed With Cash.mp4');
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
@@ -68,6 +76,9 @@ $(function(){
 			},
 			currentQuestionAnswered: function(){
 				return this.quest_array[this.current_question].answered;
+			},
+			currentQuestionAnswer: function(){
+				return this.quest_array[this.current_question].choices[correct_choice];
 			}
 		};
 
@@ -129,21 +140,27 @@ $(function(){
 		var checkQuest = $questions.currentQuestion();
 		
 		//checks against the global variable guess
-		$('#modalVidsLabel').text(checkQuest.correct_choice == guess ? "Correct!" : "Incorrect");
-		console.log(checkQuest,checkQuest.correct_choice);
+		$('#modalVidsLabel').text(checkQuest.answer(guess)? "Correct!" : "Incorrect");
+		$('#modalVidsLabelAnswer').text("Answer "+ checkQuest.correctChoice);
+
 	}
 
 	//submit modal function calls
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
+		
+		/*Play vid on opening the modalVids*/
+		
+
 		/* When user clicks 'Yup' button, closes the modal*/
-		$('#modalVidsLabel').text(checkQuote());
+		checkQuote();
 
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
 			/* When the modal closes, opens the video modal and
 			sets the video src file to the current question's video file*/
 			$video.src = $questions.currentQuestionVid();
+			$video.play();
 			console.log($questions.currentQuestionVid());
 			$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
 				event.preventDefault();
@@ -151,6 +168,7 @@ $(function(){
 				/*pause the video file on modal close*/
 				$video.pause();
 				console.log('paused a vid');
+				$('#questStatus').text($questions.currentQuestionAnswer()).fadeIn('slow');
 			});
 
 		});
