@@ -9,6 +9,7 @@ $(function(){
 	var $choiceSpaces = $('ul#choiceSpace').children();
 	var $choiceConfirms = $('.choicespace-buttons');
 	var $submitModal = $('#myModal');
+	var $questionStatus = $('#questStatus');
 	var $video = document.getElementById('fittedVid');
 	
 	// var questions = [];
@@ -18,8 +19,24 @@ $(function(){
 		this.vidFile = vidFile;
 		this.correctChoice = this.choices[correct_choice];
 		this.answer = function(guess) {
+			/*sets the answered var to True, 
+			returns result of guess*/
+			this.answered = true;
+			if (guess == correct_choice) {
+				this.status = "Correct!";
+			}
 			return guess == correct_choice;
 		};
+
+		//function called to check if confirmed submitted 
+		this.checkQuote = function() {
+	
+			//checks against the global variable guess
+			$('#modalVidsLabel').text(this.answer(guess)? "Correct!" : "Incorrect");
+			$('#modalVidsLabelAnswer').text("Answer "+ this.correctChoice);
+		};
+		this.answered = false;
+		this.status = "Incorrect";
 	}
 
 	var $quest1 = new Question("\'Zerts’ are what I call desserts. ‘Trée-trées’" + 
@@ -78,11 +95,11 @@ $(function(){
 				return this.quest_array[this.current_question].answered;
 			},
 			currentQuestionAnswer: function(){
-				return this.quest_array[this.current_question].choices[correct_choice];
+				return this.quest_array[this.current_question].correctChoice;
 			}
 		};
 
-	/*functions*/
+	/*functions for generating next/previous questions*/
 	
 	function nextQuest() {
 				
@@ -114,7 +131,7 @@ $(function(){
 
 			});
 
-			$questions.current_question = curr_quest;
+			
 		}
 	}
 
@@ -129,46 +146,41 @@ $(function(){
 		}
 
 		$('#quest_num').text('Question ' + $questions.currentQuestionCount() + " of 5" );
+
+		//To-Do: If Question has been answered, populate status of question status as Correct or Incorrect
+		$questionStatus.text(question.answered? question.status:"");
 		$questionSpace.fadeIn();
 
 	}
 	
-	//function called to check if confirmed submitted 
-	function checkQuote() {
-		// alert(question.correct_choice);
-		// sets checkQuest to the current question
-		var checkQuest = $questions.currentQuestion();
-		
-		//checks against the global variable guess
-		$('#modalVidsLabel').text(checkQuest.answer(guess)? "Correct!" : "Incorrect");
-		$('#modalVidsLabelAnswer').text("Answer "+ checkQuest.correctChoice);
-
-	}
+	
 
 	//submit modal function calls
 	$('#confirm').on('click', function(event) {
 		event.preventDefault();
-		
-		/*Play vid on opening the modalVids*/
-		
+		/*sets a temporary variable to interact with current question object*/
+		var confirmQuestion = $questions.currentQuestion();
 
-		/* When user clicks 'Yup' button, closes the modal*/
-		checkQuote();
+		confirmQuestion.checkQuote();
 
 		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
 			event.preventDefault();
+
 			/* When the modal closes, opens the video modal and
 			sets the video src file to the current question's video file*/
-			$video.src = $questions.currentQuestionVid();
+			$video.src = confirmQuestion.vidFile;
+			
+			/*Play vid on opening the modalVids*/
 			$video.play();
-			console.log($questions.currentQuestionVid());
+			
 			$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
 				event.preventDefault();
 				
 				/*pause the video file on modal close*/
 				$video.pause();
 				console.log('paused a vid');
-				$('#questStatus').text($questions.currentQuestionAnswer()).fadeIn('slow');
+				/*To-Do: Update Answered Status after a user has answered a question*/
+				$questionStatus.text(confirmQuestion.status).fadeIn('slow');
 			});
 
 		});
