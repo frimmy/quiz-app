@@ -33,6 +33,7 @@ $(function(){
 	
 			//checks against the global variable guess!
 			if (!this.answered) {
+				$questions.answered_questions+=1;
 				$('#modalVidsLabel').text(this.answer(guess)? "Correct!" : "Incorrect");
 				$('#modalVidsLabelAnswer').text("Answer "+ this.correctChoice);
 				
@@ -67,7 +68,7 @@ $(function(){
 	var $quest3 = new Question("\'I'm a simple man. I like pretty, dark-haired " + "women and breakfast food.\'",
 	["Leslie", "Tom", "Ron","Chris"],
 	2,
-	'video/Ron Swansons a simpleman.mp4');
+	'video/Ron Swansons a simple man.mp4');
 
 	var $quest4 = new Question("\'My mom's Puerto Rican. That's why I'm so lively" + 
 		"and colorful.\'",
@@ -85,6 +86,7 @@ $(function(){
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
 			current_question: 0,
 			correct_questions: 0,
+			answered_questions: 0,
 			total_questions: function() {
 				return this.quest_array.length;
 			},
@@ -153,6 +155,7 @@ $(function(){
 
 		//To-Do: If Question has been answered, populate status of question status as Correct or Incorrect
 		$questionStatus.text(question.answered? question.status:"");
+		$('#questScore').text($questions.correct_questions + " out of 5 questions correctly answered.");
 		$questionSpace.fadeIn();
 
 	}
@@ -167,7 +170,7 @@ $(function(){
 
 		confirmQuestion.checkQuote();
 
-		$submitModal.modal('hide').on('hidden.bs.modal', function(event) {
+		$submitModal.modal('hide').one('hidden.bs.modal', function(event) {
 			event.preventDefault();
 			console.log("called the weird modal hide func");
 			/* When the modal closes, opens the video modal and
@@ -177,7 +180,9 @@ $(function(){
 			/*Play vid on opening the modalVids*/
 			$video.play();
 		});
-		$('#modalVids').modal('show').on('hidden.bs.modal', function(event) {
+
+
+		$('#modalVids').modal('show').one('hidden.bs.modal', function(event) {
 				event.preventDefault();
 				
 				/*pause the video file on modal close*/
@@ -185,8 +190,34 @@ $(function(){
 				console.log('paused a vid');
 				/*To-Do: Update Answered Status after a user has answered a question*/
 				$questionStatus.text(confirmQuestion.status).fadeIn('slow');
-			});
+				gamePlay($questions);	
+		});
+
 	});
+
+
+	// function for the game and score
+	function gamePlay (questions) {
+		if(questions.answered_questions < 5){
+			alert("Player has " + (5 - questions.answered_questions) + " more questions to answer.");
+		} else {
+			gameOver();
+		}
+	}
+	// Game over function
+	function gameOver () {
+		$questionSpace.fadeOut('fast',function(event){
+			$quoteSpace.text("You got " + $questions.correct_questions + " out of 5 questions right!");
+		$('#quest_num').text("Game Over \nThanks for playing!");
+
+		$questionStatus.text("");
+		$('.quiz-nav').toggle();
+		$choiceSpaces.toggle();	
+
+		});
+
+		$questionSpace.fadeIn('slow');
+	}
 
 	/*start quiz, fade out Cast pic*/
 	$('button#start').on('click', function(event) {

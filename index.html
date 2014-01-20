@@ -70,27 +70,31 @@
         <img src="images/parks-and-rec.jpg" alt="parks and rec cast">
 
         <section id="quiz" class="main-hidden">
-
-
+        
+            <!--Question space  -->
             <div id="questionSpace">
+                <!-- Auto populates where user is in the question queue -->
                 <div><span id="quest_num"></span><span id="questStatus"></span></div>
+                
+                <!-- Quotespace is populated by javascript listener -->
                 <div id="quoteSpace"></div>
                 
+                <!-- Choicespace autopopulates answer choices -->
                 <ul id="choiceSpace">
                     <li value="0"></li>
                     <li value="1"></li>
                     <li value="2"></li>
                     <li value="3"></li>
                 </ul>
-                
+                <span id="questScore"></span>
             </div>
-
+            <!-- Quiz navigation space that calls javascript to queue up next questions -->
             <div class="quiz-nav">
                     
                     <button class="btn btn-default nav-btns" id="prevQuest"><span class="glyphicon glyphicon-chevron-left"></span></button>
-
+                    <!-- Brings up modal on submit -->
                     <button class="choicespace-buttons btn btn-default" data-toggle="modal" data-target="#myModal">Submit</button>
-
+        
                     <button class="btn btn-default nav-btns" id="nextQuest"><span class="glyphicon glyphicon-chevron-right"></span></button>
                 </div>
             
@@ -134,27 +138,6 @@
                         <div class="modal-body">
                             <div class="fittedVid">
                                 <video id="fittedVid" src="video/Parks and Recreation - Tom explains Apps and Zerts.mp4" width="420" height="315" frameborder="0" allowfullscreen controls autobuffer></video>
-                            </div>                            
-
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal --> 
-    <!-- Modal Dialog for GameScore -->
-            <div class="modal fade" id="modalVids" tabindex="-1" role="dialog" aria-labelledby="modalVidsLabel" aria-hidden="true">
-                <div class="modal-dialog" id="quizModalvid">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                            <h4 class="modal-title" id="modalVidsLabel">Correct/Wrong</h4>
-                            <h4 id="modalVidsLabelAnswer">Answer: </h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="fittedVid">
-                                <video id="fittedVid" src="video/Parks and Recreation - Tom explains Apps and Zerts.mp4" width="420" height="315" frameborder="0" allowfullscreen controls autobuffer type="video/mp4"></video>
                             </div>                            
 
                         </div>
