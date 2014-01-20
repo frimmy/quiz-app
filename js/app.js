@@ -6,7 +6,7 @@ $(function(){
 	// cache callable ids
 	var $questionSpace = $('#questionSpace');
 	var $quoteSpace = $('div#quoteSpace');
-	var $choiceSpaces = $('ul#choiceSpace').children();
+	var $choiceSpaces = $('ul#choiceSpace li');
 	var $choiceConfirms = $('.choicespace-buttons');
 	var $submitModal = $('#myModal');
 	var $questionStatus = $('#questStatus');
@@ -63,25 +63,25 @@ $(function(){
 		"here and it says you could have network connectivity problems.\'",
 		["Andy", "April", "Leslie","Ron"],
 		0,
-		'video/Parks and Recreation- You could have network connectivity problems.mp4');
+		'video/Parks%20and%20Recreation-%20You%20could%20have%20network%20connectivity%20problems.mp4');
 
 	
 	var $quest3 = new Question("\'I'm a simple man. I like pretty, dark-haired " + "women and breakfast food.\'",
 	["Leslie", "Tom", "Ron","Chris"],
 	2,
-	'video/Ron Swansons a simple man.mp4');
+	'video/Ron%20Swansons%20a%20simple%20man.mp4');
 
 	var $quest4 = new Question("\'My mom's Puerto Rican. That's why I'm so lively" + 
 		"and colorful.\'",
 		["Ann", "Tom", "Andy","April"],
 		3,
-		'video/Parks and Recreation - April- Im so lively and colorful.mp4');
+		'video/Parks%20and%20Recreation%20-%20April-%20Im%20so%20lively%20and%20colorful.mp4');
 
 
 	var $quest5 = new Question("\'Yesterday if you would’ve asked me, I would’ve said no. But thank God my grandfather just died so I am A-FLUUUUSHED WITH CAAAAASH!\'",
 		["Jean Ralphio", "Tom", "Ron","Chris"],
 		0,
-		'video/Jean-Ralphio - Flushed With Cash.mp4');
+		'video/Jean-Ralphio%20-%20Flushed%20With%20Cash.mp4');
 
 	var $questions = {
 			quest_array: [$quest1, $quest2, $quest3, $quest4, $quest5],
@@ -148,9 +148,10 @@ $(function(){
 		$quoteSpace.text(question.quote);
 		
 		//populate choices
-		for (var i = question.choices.length - 1; i >= 0; i--) {
-			$choiceSpaces.eq(i).text(question.choices[i]);
-		}
+		$choiceSpaces.each(function(index) {
+			/* iterate through array or object */
+			$(this).text(question.choices[index]);	
+		});
 
 		$('#quest_num').text('Question ' + $questions.currentQuestionCount() + " of 5" );
 
@@ -257,7 +258,7 @@ $(function(){
 		$(this).addClass('choiceSpace-selected');
 		console.log('added choiceSpace-selected class');
 		//sets the global variable guess when user clicks a choice
-		guess = $(this).val();
+		guess = $(this).data('value');
 	});
 
 	
