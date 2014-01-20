@@ -41,6 +41,7 @@ $(function(){
 					$questions.correct_questions+=1;
 				}
 			}
+			$('#questScore').text($questions.correct_questions + " out of 5 questions correctly answered.");
 		};
 		this.answered = false;
 		this.status = "Incorrect";
@@ -198,21 +199,20 @@ $(function(){
 
 	// function for the game and score
 	function gamePlay (questions) {
-		if(questions.answered_questions < 5){
-			alert("Player has " + (5 - questions.answered_questions) + " more questions to answer.");
-		} else {
+		if(questions.answered_questions > 4){
 			gameOver();
 		}
 	}
 	// Game over function
 	function gameOver () {
 		$questionSpace.fadeOut('fast',function(event){
-			$quoteSpace.text("You got " + $questions.correct_questions + " out of 5 questions right!");
-		$('#quest_num').text("Game Over \nThanks for playing!");
+			$quoteSpace.text("");
+			$questScore.text("You got " + $questions.correct_questions + " out of 5 questions right!");
+			$('#quest_num').text("Game Over \nThanks for playing!");
 
-		$questionStatus.text("");
-		$('.quiz-nav').toggle();
-		$choiceSpaces.toggle();	
+			$questionStatus.text("");
+			$('.quiz-nav').toggle();
+			$choiceSpaces.toggle();	
 
 		});
 
